@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - main
+  # PRに対しても実行（ステータスチェック用）
+  pull_request:
+    branches:
+      - main
 
 # 同じコミットで複数のジョブが実行されないようにする
 concurrency:
