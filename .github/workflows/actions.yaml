@@ -1,11 +1,9 @@
-name: GitHub Actions
+name: CI
 
 on:
-  # mainブランチへのpush時のみ実行（PRマージ時 or 直接push時）
   push:
     branches:
       - main
-  # PRに対しても実行（ステータスチェック用）
   pull_request:
     branches:
       - main
