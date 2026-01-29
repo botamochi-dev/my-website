@@ -1,0 +1,24 @@
+{
+  "Insert Current Date": {
+    "prefix": "date",
+    "body": ["$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"],
+    "description": "現在の日付を挿入（YYYY-MM-DD形式）",
+  },
+  "Blog Post Frontmatter": {
+    "prefix": "frontmatter",
+    "body": [
+      "---",
+      "publishDate: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "title: ${1:記事タイトル}",
+      "excerpt: ${2:記事の概要}",
+      "image: ${3:https://images.unsplash.com/}",
+      "category: ${4:技術}",
+      "tags:",
+      "  - ${5:タグ1}",
+      "---",
+      "",
+      "$0",
+    ],
+    "description": "ブログ記事のフロントマター（メタデータ）を挿入",
+  },
+}

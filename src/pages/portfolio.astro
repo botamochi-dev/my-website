@@ -1,0 +1,227 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'ポートフォリオ',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Portfolio"
+    image={{
+      src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80',
+      alt: 'Portfolio Image',
+    }}
+  >
+    <Fragment slot="title">
+      私の<span class="text-accent dark:text-white">プロジェクト</span>と<br />
+      技術スタック
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      これまで開発してきたプロジェクトや使用している技術について紹介します。
+      実践的な経験と継続的な学習を通じて、スキルを向上させています。
+    </Fragment>
+  </Hero>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="技術スタック"
+    subtitle="習得している技術と開発ツール"
+    items={[
+      {
+        title: 'フロントエンド',
+        description: 'HTML, CSS, JavaScript, TypeScript, React, Vue.js, Astro',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'バックエンド',
+        description: 'Node.js, Python, Express, FastAPI',
+        icon: 'tabler:server',
+      },
+      {
+        title: 'データベース',
+        description: 'MySQL, PostgreSQL, MongoDB',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'ツール & その他',
+        description: 'Git, Docker, AWS, CI/CD',
+        icon: 'tabler:tools',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    title="プロジェクト 1"
+    subtitle="Webアプリケーション開発"
+    isReversed
+    items={[
+      {
+        title: '使用技術',
+        description: 'React, TypeScript, Node.js, PostgreSQL',
+        icon: 'tabler:check',
+      },
+      {
+        title: '概要',
+        description:
+          'ユーザー管理機能を持つフルスタックWebアプリケーション。認証機能、CRUD操作、レスポンシブデザインを実装。',
+      },
+      {
+        title: '成果',
+        description: 'パフォーマンスの最適化により、ページ読み込み速度を40%改善。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Project 1 Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">プロジェクト詳細</h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    title="プロジェクト 2"
+    subtitle="モバイルアプリ開発"
+    isAfterContent
+    items={[
+      {
+        title: '使用技術',
+        description: 'React Native, Firebase, Redux',
+        icon: 'tabler:check',
+      },
+      {
+        title: '概要',
+        description: 'クロスプラットフォーム対応のモバイルアプリケーション。リアルタイムデータ同期機能を実装。',
+      },
+      {
+        title: '成果',
+        description: 'iOS・Android両プラットフォームで動作するアプリを単一コードベースで実現。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Project 2 Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">プロジェクト詳細</h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    title="プロジェクト 3"
+    subtitle="データ分析プロジェクト"
+    isReversed
+    items={[
+      {
+        title: '使用技術',
+        description: 'Python, Pandas, Matplotlib, Jupyter',
+        icon: 'tabler:check',
+      },
+      {
+        title: '概要',
+        description: '大規模データセットの分析と可視化。機械学習モデルを活用した予測分析。',
+      },
+      {
+        title: '成果',
+        description: 'データドリブンな意思決定をサポートする分析ダッシュボードを構築。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Project 3 Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">プロジェクト詳細</h3>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="開発プロセス"
+    items={[
+      {
+        title: 'ステップ 1: <span class="font-medium">要件定義</span>',
+        description: 'プロジェクトの目的とゴールを明確化し、必要な機能を洗い出します。',
+        icon: 'tabler:clipboard-list',
+      },
+      {
+        title: 'ステップ 2: <span class="font-medium">設計</span>',
+        description: 'システムアーキテクチャとUI/UXデザインを設計。技術スタックを選定します。',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'ステップ 3: <span class="font-medium">実装</span>',
+        description: 'アジャイル開発手法を用いて、反復的に機能を実装。コードレビューと品質管理を徹底。',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'ステップ 4: <span class="font-medium">テスト & デプロイ</span>',
+        description: '包括的なテストを実施し、本番環境へデプロイ。継続的な改善を行います。',
+        icon: 'tabler:rocket',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80',
+      alt: 'Development Process',
+    }}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'お問い合わせ',
+        href: '/contact',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'GitHub',
+        href: 'https://github.com/yourusername',
+        target: '_blank',
+        icon: 'tabler:brand-github',
+      },
+    ]}
+  >
+    <Fragment slot="title">プロジェクトについて詳しく知りたい方へ</Fragment>
+
+    <Fragment slot="subtitle">
+      ご質問やご相談がありましたら、お気軽にお問い合わせください。<br />GitHubでもコードを公開しています。
+    </Fragment>
+  </CallToAction>
+</Layout>

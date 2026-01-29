@@ -1,0 +1,286 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'ポートフォリオサイト - あなたの名前',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'ポートフォリオを見る',
+        href: '/portfolio',
+        icon: 'tabler:briefcase',
+      },
+      { text: '自己紹介', href: '/about' },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Developer workspace',
+    }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white">Web開発者</span>として<br />
+      価値あるプロダクトを創造します
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">モダンな技術</span>を活用し、ユーザー体験を重視した
+        Webアプリケーション開発に取り組んでいます。</span
+      >
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">技術で未来を創る</span>
+      React、Vue.js、Astro、Node.jsなどのフレームワークを使用した開発経験があります。 フルスタック開発とUI/UXデザインに情熱を持っています。
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="モットー:" description="シンプル、高品質、ユーザーファースト" />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="特徴"
+    title="私の強み"
+    subtitle="技術力とユーザー視点を組み合わせた開発スタイル"
+    items={[
+      {
+        title: 'モダンフレームワークの活用',
+        description:
+          'React、Vue.js、Astroなど最新のフレームワークを使用し、高パフォーマンスなWebアプリケーションを開発します。',
+        icon: 'tabler:brand-react',
+      },
+      {
+        title: 'レスポンシブデザイン',
+        description: 'あらゆるデバイスで最適な表示を実現。モバイルファーストのアプローチで設計します。',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'クリーンなコード',
+        description: '保守性と可読性を重視したコードを書き、チーム開発でも効率的に作業できます。',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'パフォーマンス最適化',
+        description: 'ページ速度を最適化し、優れたユーザー体験を提供します。',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'SEO対策',
+        description: '検索エンジン最適化を考慮した実装で、Webサイトの可視性を向上させます。',
+        icon: 'tabler:seo',
+      },
+      {
+        title: '継続的な学習',
+        description: '最新の技術トレンドをキャッチアップし、常にスキルアップを心がけています。',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    tagline="技術スタック"
+    title="使用している技術"
+    items={[
+      {
+        title: 'Astro / React / Vue.js',
+        description: '最新のフロントエンドフレームワークを活用し、パフォーマンスとDX(開発者体験)を両立させます。',
+      },
+      {
+        title: 'TypeScript',
+        description: '型安全性を確保し、大規模アプリケーションでも保守しやすいコードを実現します。',
+      },
+      {
+        title: 'Node.js / Python',
+        description: 'バックエンド開発にも対応。RESTful APIの設計・実装が可能です。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Tech Stack',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">モダンな技術基盤</h3>
+      最新のベストプラクティスを取り入れた開発
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'ユーザー中心設計',
+        description: `ユーザーのニーズを第一に考え、使いやすく直感的なインターフェースを提供します。`,
+      },
+      {
+        title: 'アクセシビリティ',
+        description: '誰もが使えるWebサイトを目指し、WCAG準拠を心がけた開発を行います。',
+      },
+      {
+        title: 'レスポンシブ対応',
+        description: 'スマートフォン、タブレット、デスクトップなど、あらゆるデバイスで最適な表示を実現します。',
+      },
+      {
+        title: 'パフォーマンス重視',
+        description: '高速な読み込みとスムーズな操作で、優れたユーザー体験を提供します。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1576153192621-7a3be10b356e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Development approach',
+    }}
+  >
+    <Fragment slot="content">品質と使いやすさを追求</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    isAfterContent
+    items={[
+      {
+        title: '効率的な開発プロセス',
+        description: 'アジャイル開発手法を取り入れ、迅速なフィードバックループで品質を高めます。',
+      },
+      {
+        title: '継続的な改善',
+        description: '最新の技術トレンドとベストプラクティスを常に学び、取り入れています。',
+      },
+      {
+        title: 'コミュニケーション重視',
+        description: 'プロジェクトの成功には円滑なコミュニケーションが不可欠だと考えています。',
+      },
+      {
+        title: 'チーム開発',
+        description: `Gitを活用したバージョン管理や、コードレビューなど、チーム開発に必要なスキルを身につけています。`,
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Team collaboration',
+    }}
+  >
+    <Fragment slot="content">成長と成功のために設計された開発スタイル</Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="プロジェクト開発の流れ"
+    items={[
+      {
+        title: 'ステップ 1: <span class="font-medium">要件定義</span>',
+        description: 'クライアントやユーザーのニーズをヒアリングし、プロジェクトの目標と機能要件を明確化します。',
+        icon: 'tabler:clipboard-list',
+      },
+      {
+        title: 'ステップ 2: <span class="font-medium">設計・プロトタイプ</span>',
+        description: 'UI/UXデザインとシステムアーキテクチャを設計。プロトタイプを作成してフィードバックを得ます。',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'ステップ 3: <span class="font-medium">実装・テスト</span>',
+        description: 'クリーンなコードで機能を実装し、包括的なテストで品質を確保します。',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'デプロイ完了!',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80',
+      alt: 'Development process',
+    }}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="実績の数字"
+    stats={[
+      { title: 'プロジェクト', amount: '10+' },
+      { title: '学習時間', amount: '1000+' },
+      { title: 'GitHubコミット', amount: '500+' },
+      { title: '使用技術', amount: '15+' },
+    ]}
+  />
+
+  <!-- BlogLatestPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="ブログ記事"
+    information={`技術的な学びや開発の記録をブログで共有しています。
+                        最新の記事をチェックして、私の学習の旅をフォローしてください。
+                `}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </BlogLatestPosts>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'ポートフォリオを見る',
+        href: '/portfolio',
+        icon: 'tabler:briefcase',
+      },
+      {
+        variant: 'secondary',
+        text: 'お問い合わせ',
+        href: '/contact',
+        icon: 'tabler:mail',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      一緒に素晴らしい<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">プロジェクトを</span
+      >作りませんか?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      プロジェクトのご相談やご質問がありましたら、お気軽にご連絡ください。<br class="hidden md:inline" />
+      あなたのアイデアを形にするお手伝いをさせていただきます。
+    </Fragment>
+  </CallToAction>
+</Layout>

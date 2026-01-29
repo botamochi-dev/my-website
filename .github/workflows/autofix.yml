@@ -1,0 +1,30 @@
+name: Autofix dependencies
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # weekly at 03:00 UTC every Monday
+  workflow_dispatch: {}
+
+jobs:
+  npm-audit-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Run npm audit fix
+        run: npm audit fix || true
+      - name: Create PR when lockfile changed
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: chore(deps): npm audit fix
+          branch: autofix/npm-audit-fix
+          title: chore(deps): npm audit fix
+          body: "Automated npm audit fix applied by workflow. Please review and run tests."
+          labels: autofix,dependencies

@@ -1,0 +1,43 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'お問い合わせ',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText
+    tagline="Contact"
+    title="お問い合わせ"
+    subtitle="ご質問やご相談がありましたら、下記の連絡先からお気軽にご連絡ください。"
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="お問い合わせ方法"
+    subtitle="以下のいずれかの方法でご連絡いただけます。"
+    items={[
+      {
+        title: 'メール',
+        description: 'your-email@example.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'GitHub',
+        description: 'github.com/botamochi-dev',
+        icon: 'tabler:brand-github',
+      },
+      {
+        title: 'X (Twitter)',
+        description: '@yourusername',
+        icon: 'tabler:brand-x',
+      },
+    ]}
+  />
+</Layout>

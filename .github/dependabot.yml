@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "dependabot"
+    commit-message:
+      prefix: "chore(deps)"
+    # Allow minor and patch updates to be auto-merged
+    # Major updates will be opened for manual review
+    ignore:
+      - dependency-type: "all"
+        update-types: ["version-update:semver-major"]

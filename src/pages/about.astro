@@ -1,0 +1,214 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: '自己紹介',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="About Me"
+    image={{
+      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80',
+      alt: 'About Me Image',
+    }}
+  >
+    <Fragment slot="title">
+      こんにちは！<br />
+      <span class="text-accent dark:text-white">Web開発者</span>を目指しています
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      プログラミングとテクノロジーに情熱を持ち、常に新しい技術を学び続けています。
+      ユーザー体験を重視したWebアプリケーションの開発に興味があり、
+      フロントエンドからバックエンドまで幅広く学習しています。
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="実績"
+    stats={[
+      { title: 'プロジェクト', amount: '10+' },
+      { title: '学習時間', amount: '1000+' },
+      { title: '使用技術', amount: '15+' },
+      { title: 'GitHubコミット', amount: '500+' },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="スキルセット"
+    subtitle="習得している技術と開発領域"
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'フロントエンド開発',
+        description: 'モダンなフレームワークを活用したレスポンシブでインタラクティブなUI開発',
+        icon: 'tabler:browser',
+      },
+      {
+        title: 'バックエンド開発',
+        description: 'RESTful APIの設計・実装、データベース設計、サーバー構築',
+        icon: 'tabler:server-2',
+      },
+      {
+        title: 'DevOps',
+        description: 'CI/CDパイプライン構築、クラウドインフラ管理、コンテナ化',
+        icon: 'tabler:cloud',
+      },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    columns={3}
+    isAfterContent={true}
+    items={[
+      {
+        title: '問題解決能力',
+        description: '複雑な課題を分析し、効率的なソリューションを見つけ出す能力',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'チームワーク',
+        description: 'コミュニケーションを大切にし、チームメンバーと協力して目標を達成',
+        icon: 'tabler:users',
+      },
+      {
+        title: '継続的学習',
+        description: '最新の技術トレンドをキャッチアップし、常にスキルアップを心がけています',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Branding',
+        description:
+          'Suspendisse vitae nisi eget tortor luctus maximus sed non lectus. Cras malesuada pretium placerat. Nullam venenatis dolor a ante rhoncus.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Medical',
+        description:
+          'Vestibulum malesuada lacus id nibh posuere feugiat. Nam volutpat nulla a felis ultrices, id suscipit mauris congue. In hac habitasse platea dictumst.',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Fashion Design',
+        description:
+          'Maecenas eu tellus eget est scelerisque lacinia et a diam. Aliquam velit lorem, vehicula id fermentum et, rhoncus et purus.',
+        icon: 'tabler:template',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Team collaboration',
+    }}
+  />
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="私の価値観"
+    subtitle="開発において大切にしていること"
+    items={[
+      {
+        title: 'ユーザーファースト',
+        description: '常にユーザーの視点に立ち、使いやすく価値のあるプロダクトを提供することを心がけています。',
+      },
+      {
+        title: '継続的な改善',
+        description: 'フィードバックを真摯に受け止め、常により良い方法を模索し続けます。',
+      },
+      {
+        title: 'クリーンなコード',
+        description: '保守性が高く、可読性の良いコードを書くことで、チーム開発を円滑にします。',
+      },
+    ]}
+  />
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="学習と成長"
+    subtitle="これまでの学習経験と今後の目標"
+    isReversed={true}
+    callToAction={{
+      text: 'ポートフォリオを見る',
+      href: '/portfolio',
+    }}
+    items={[
+      {
+        title: 'オンライン学習',
+        description: 'Udemy、Coursera、YouTubeなどを活用して、体系的にプログラミングを学習',
+        icon: 'tabler:school',
+      },
+      {
+        title: '実践的なプロジェクト',
+        description: '学んだ知識を実践に活かし、個人プロジェクトやオープンソースへの貢献を通じてスキルを磨いています',
+        icon: 'tabler:code',
+      },
+      {
+        title: '技術コミュニティへの参加',
+        description: '勉強会やハッカソンに参加し、他の開発者との交流を通じて視野を広げています',
+        icon: 'tabler:users',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="興味のある分野"
+    tagline="Focus Areas"
+    columns={3}
+    items={[
+      {
+        title: 'Webアプリケーション',
+        description: 'React、Vue、Astroなどを使ったモダンなWeb開発',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'UI/UX',
+        description: 'ユーザー体験を重視したデザインとインタラクション',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'パフォーマンス最適化',
+        description: '高速で効率的なアプリケーションの構築',
+        icon: 'tabler:rocket',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="お問い合わせ"
+    tagline="Contact"
+    columns={2}
+    items={[
+      {
+        title: 'メール',
+        description: 'プロジェクトのご相談や質問がありましたら、お気軽にメールでご連絡ください。',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'GitHub',
+        description: 'オープンソースプロジェクトやコードサンプルはGitHubで公開しています。',
+        icon: 'tabler:brand-github',
+      },
+    ]}
+  />
+</Layout>
