@@ -121,6 +121,110 @@ npm run check:prettier
 npm run fix
 ```
 
+## 🧹 Linter and Formatter
+
+このプロジェクトでは、**ESLint**でコードのリンティング、**Prettier**でコードの整形を行っています。
+
+### 自動実行の仕組み
+
+これらは、**Git のコミット時に自動的に実行され、適用されます。**
+
+- **husky** - Git hooksの管理
+- **lint-staged** - ステージされたファイルのみを処理
+
+### コミット時の動作
+
+`git commit` を実行すると、以下が自動的に実行されます：
+
+1. **JavaScriptファイル** (`.js`, `.jsx`, `.ts`, `.tsx`, `.astro`)
+   - ESLintで自動修正
+   - Prettierで整形
+
+2. **その他のファイル** (`.json`, `.md`, `.mdx`, `.css`, `.yaml`, `.yml`)
+   - Prettierで整形
+
+### 手動実行
+
+コミット前に手動でチェック・修正したい場合：
+
+```bash
+# チェックのみ
+npm run check
+
+# 自動修正
+npm run fix
+```
+
+## 🔄 依存関係の自動更新
+
+このプロジェクトでは、**Renovate**を使用して依存関係を自動的に更新しています。
+
+### Renovateの設定
+
+設定ファイル: [`.github/renovate.json`](.github/renovate.json)
+
+**主な設定内容:**
+
+- **実行スケジュール**: 毎週月曜日の午前4時前（Asia/Tokyo）
+- **最小リリース期間**: 14日（安定性確保のため）
+- **PR制限**: 1時間あたり10件、同時15件まで
+
+### 自動マージのルール
+
+#### ✅ 自動マージされるもの
+
+1. **パッチ・マイナーバージョン**
+   - リリースから14日経過後に自動マージ
+   - 例: `1.2.3` → `1.2.4` (patch) または `1.3.0` (minor)
+
+2. **開発依存関係 (devDependencies)**
+   - リリースから7日経過後に自動マージ
+   - より積極的に更新
+
+3. **セキュリティアップデート**
+   - 待機期間なしで即座に自動マージ
+   - ラベル: `security`, `dependencies`
+
+#### 🔍 手動レビューが必要なもの
+
+- **メジャーバージョンアップ**
+  - 破壊的変更の可能性があるため手動レビュー
+  - リリースから21日経過後に通知
+  - ラベル: `major`, `dependencies`, `renovate`
+  - 例: `1.x.x` → `2.0.0`
+
+### パッケージグループ
+
+関連するパッケージは1つのPRにまとめられます：
+
+- **Astro packages** - `astro`, `@astrojs/*`, `astro-*`
+- **Linting and formatting** - `eslint`, `prettier`
+- **TypeScript** - `typescript`, `@types/*`
+- **Tailwind CSS** - `tailwind*`
+
+### GitHub Actionsによる自動承認
+
+[`.github/workflows/autofix.yml`](.github/workflows/autofix.yml)により、以下が自動化されています：
+
+- Renovateが作成したPRを自動承認
+- 自動マージの条件を満たしたPRを自動マージ（CI通過後）
+- マージ方法: squash merge
+
+### 手動での依存関係更新
+
+必要に応じて手動で更新する場合：
+
+```bash
+# 依存関係の更新確認
+npm outdated
+
+# 特定のパッケージを更新
+npm update <package-name>
+
+# package.jsonのバージョン範囲内で依存関係を更新
+npm update
+```
+
 ## 📝 ブログ記事の追加方法
 
 1. `src/data/post/` に新しい `.mdx` ファイルを作成
