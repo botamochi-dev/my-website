@@ -207,7 +207,7 @@ npm run fix
 [`.github/workflows/autofix.yml`](.github/workflows/autofix.yml)により、以下が自動化されています：
 
 - Renovateが作成したPRを自動承認
-- メジャーバージョン以外のPRを自動マージ（CI通過後）
+- 自動マージの条件を満たしたPRを自動マージ（CI通過後）
 - マージ方法: squash merge
 
 ### 手動での依存関係更新
@@ -221,7 +221,7 @@ npm outdated
 # 特定のパッケージを更新
 npm update <package-name>
 
-# すべての依存関係を最新に更新（慎重に）
+# package.jsonのバージョン範囲内で依存関係を更新
 npm update
 ```
 
