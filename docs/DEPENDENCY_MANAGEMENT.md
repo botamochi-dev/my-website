@@ -238,7 +238,7 @@ check:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v6
-    - name: Use Node.js 22
+    - name: Use Node.js 24
       uses: actions/setup-node@v5
       with:
         node-version: 24

@@ -406,23 +406,6 @@ src/legacy/old-code.js
 src/generated/**
 ```
 
-### 2. エディタの自動フォーマットを活用
-
-- 保存時の自動フォーマットを有効にする
-- エラーは早期に修正する
-
-### 3. CI/CDでチェック
-
-GitHub Actionsで自動チェックが実行されます:
-
-- プルリクエスト作成時
-- mainブランチへのマージ時
-
-### 4. チーム内で統一
-
-- すべてのメンバーが同じ設定を使用
-- エディタの設定ファイルをリポジトリに含める
-
 ## 参考資料
 
 - [Prettier Documentation](https://prettier.io/docs/en/index.html)
