@@ -10,7 +10,7 @@
   ],
   "timezone": "Asia/Tokyo",
   "schedule": [
-    "at any time"
+    "before 4am on Monday"
   ],
   "labels": [
     "dependencies",
@@ -19,7 +19,7 @@
   "commitMessagePrefix": "chore(deps):",
   "prHourlyLimit": 10,
   "prConcurrentLimit": 15,
-  "minimumReleaseAge": "3 days",
+  "minimumReleaseAge": "14 days",
   "internalChecksFilter": "strict",
   "automerge": true,
   "automergeType": "pr",
