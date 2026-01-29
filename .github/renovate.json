@@ -9,13 +9,8 @@
     ":automergeMinor"
   ],
   "timezone": "Asia/Tokyo",
-  "schedule": [
-    "before 4am on Monday"
-  ],
-  "labels": [
-    "dependencies",
-    "renovate"
-  ],
+  "schedule": ["before 4am on Monday"],
+  "labels": ["dependencies", "renovate"],
   "commitMessagePrefix": "chore(deps):",
   "prHourlyLimit": 10,
   "prConcurrentLimit": 15,
@@ -30,98 +25,63 @@
     {
       "description": "Astro関連パッケージをグループ化",
       "groupName": "Astro packages",
-      "matchPackagePatterns": [
-        "^astro$",
-        "^@astrojs/",
-        "^astro-"
-      ],
       "automerge": true,
-      "schedule": [
-        "before 4am on Monday"
-      ]
+      "schedule": ["before 4am on Monday"],
+      "matchPackageNames": ["/^astro$/", "/^@astrojs//", "/^astro-/"]
     },
     {
       "description": "ESLint/Prettier関連をグループ化",
       "groupName": "Linting and formatting",
-      "matchPackagePatterns": [
-        "eslint",
-        "prettier"
-      ],
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": ["/eslint/", "/prettier/"]
     },
     {
       "description": "TypeScript関連をグループ化",
       "groupName": "TypeScript",
-      "matchPackagePatterns": [
-        "typescript",
-        "^@types/"
-      ],
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": ["/typescript/", "/^@types//"]
     },
     {
       "description": "Tailwind関連をグループ化",
       "groupName": "Tailwind CSS",
-      "matchPackagePatterns": [
-        "tailwind"
-      ],
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": ["/tailwind/"]
     },
     {
       "description": "メジャーバージョンアップは手動レビュー",
-      "matchUpdateTypes": [
-        "major"
-      ],
+      "matchUpdateTypes": ["major"],
       "automerge": false,
       "minimumReleaseAge": "21 days",
-      "labels": [
-        "dependencies",
-        "renovate",
-        "major"
-      ]
+      "labels": ["dependencies", "renovate", "major"]
     },
     {
       "description": "マイナー・パッチは自動マージ",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
     },
     {
       "description": "devDependenciesは積極的に自動マージ",
-      "matchDepTypes": [
-        "devDependencies"
-      ],
+      "matchDepTypes": ["devDependencies"],
       "automerge": true,
       "minimumReleaseAge": "7 days"
     },
     {
       "description": "セキュリティアラートは即座に自動マージ",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchUpdateTypes": [
-        "patch"
-      ],
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["patch"],
       "vulnerabilityAlerts": {
         "enabled": true
       },
       "minimumReleaseAge": null,
       "automerge": true,
-      "labels": [
-        "security",
-        "dependencies"
-      ]
+      "labels": ["security", "dependencies"]
     }
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": [
-      "security",
-      "dependencies"
-    ],
+    "labels": ["security", "dependencies"],
     "minimumReleaseAge": null,
     "automerge": true
   }
