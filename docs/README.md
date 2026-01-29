@@ -38,7 +38,7 @@ Prettier、ESLint、自動フォーマットの設定と使用方法について
 - Prettierの設定（`.prettierrc.cjs`）
 - ESLintの設定（`eslint.config.js`）
 - 自動フォーマット（husky + lint-staged）
-- エディタ設定（VS Code、WebStorm、Vim）
+- エディタ設定（VS Code）
 - トラブルシューティング
 
 ### [依存関係管理](./DEPENDENCY_MANAGEMENT.md)
