@@ -29,6 +29,38 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              fontWeight: '400',
+              backgroundColor: theme('colors.slate.100'),
+              padding: '0.125rem 0.25rem',
+              borderRadius: '0.25rem',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            'pre code': {
+              backgroundColor: 'transparent',
+              padding: '0',
+            },
+          },
+        },
+        invert: {
+          css: {
+            code: {
+              backgroundColor: theme('colors.slate.800'),
+            },
+            'pre code': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
