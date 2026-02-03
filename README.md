@@ -1,10 +1,8 @@
-# Blog
-
-ポートフォリオサイト＆ブログ
+# botamochi-dev website
 
 ## 🌟 概要
 
-このサイトは、私のスキルやプロジェクトを紹介するためのポートフォリオサイト&ブログ投稿サイトです。
+[AstroWind](https://github.com/arthelokyo/astrowind) テンプレートをベースに作成したbotamochiのウェブサイト。
 
 ## 📘 開発ドキュメント
 
@@ -29,8 +27,8 @@
 - ✅ **レスポンシブデザイン** - モバイルファーストなUI
 - ✅ **ダークモード対応** - テーマ切り替え機能
 - ✅ **SEO最適化** - メタタグ、OGP、サイトマップ自動生成
-- ✅ **ブログ機能** - カテゴリー・タグ対応、RSSフィード
-- ✅ **画像最適化** - Astro Assets使用
+- ✅ **ブログ機能** - カテゴリー・タグ対応
+- ✅ **シンプル運用** - Vercelによる自動デプロイ
 
 ### デプロイ
 
@@ -38,7 +36,7 @@
 
 ## 📁 プロジェクト構造
 
-```
+```text
 /
 ├── public/              # 静的ファイル
 ├── src/
@@ -68,7 +66,7 @@
 ### 必要な環境
 
 - Node.js 18.17.1以上、20.3.0以上、または21.0.0以上
-- npm または pnpm
+- npm
 
 ### インストール
 
@@ -79,8 +77,6 @@ cd blog
 
 # 依存関係をインストール
 npm install
-# または
-pnpm install
 ```
 
 ### 開発サーバーの起動
@@ -89,7 +85,7 @@ pnpm install
 npm run dev
 ```
 
-ブラウザで `http://localhost:4321` を開く
+ブラウザで `http://localhost:4321` を開きます。
 
 ### ビルド
 
@@ -110,73 +106,33 @@ npm run preview
 ### コード品質チェック
 
 ```bash
-# 全チェック実行
+# 全チェック実行（型チェック、ESLint、Prettier）
 npm run check
 
-# Astro型チェック
-npm run check:astro
-
-# ESLint
-npm run check:eslint
-
-# Prettier
-npm run check:prettier
-```
-
-### 自動修正
-
-```bash
-# ESLint + Prettierで自動修正
+# 自動修正（ESLint + Prettier）
 npm run fix
 ```
 
-詳細については、[コードフォーマット設定](./docs/CODE_FORMAT.md)を参照してください。
-
 ## 📝 ブログ記事の追加方法
 
-1. `src/data/post/` に新しい `.mdx` ファイルを作成
-2. フロントマターを追加:
+1. `src/data/post/` 内に新しい `.md` または `.mdx` ファイルを作成します（例: `src/data/post/my-first-post.md`）。
+2. ファイルの先頭にフロントマター（メタデータ）を記述します:
 
-```mdx
+```md
 ---
-publishDate: 2024-01-15T00:00:00Z
-title: 記事タイトル
-excerpt: 記事の概要
-image: https://example.com/image.jpg
-category: カテゴリー
+publishDate: 2026-02-03
+title: 記事のタイトル
+excerpt: 記事の短い概要（省略可）
+image: ~/assets/images/post-image.jpg # アイキャッチ画像（省略可）
+category: 技術 # カテゴリー（省略可）
 tags:
-  - タグ1
-  - タグ2
+  - Astro
+  - Tailwind
+draft: false # trueにすると下書き扱いとなり、ビルドに含まれません
 ---
 
-ここに記事の本文を書く
+ここに記事の本文をMarkdown形式で記述します。
 ```
-
-## 🎨 カスタマイズ
-
-### サイト設定
-
-`src/config.yaml` でサイトの基本情報を変更:
-
-```yaml
-site:
-  name: サイト名
-  site: 'https://yourdomain.com'
-  base: '/'
-
-metadata:
-  title:
-    default: デフォルトタイトル
-  description: 'サイトの説明'
-```
-
-### ナビゲーション
-
-`src/navigation.ts` でヘッダー・フッターのリンクを編集
-
-### スタイル
-
-`src/assets/styles/tailwind.css` でTailwindのカスタム設定
 
 ## 🚀 デプロイ
 
@@ -185,12 +141,6 @@ metadata:
 1. GitHubリポジトリにプッシュ
 2. Vercelでプロジェクトをインポート
 3. 自動的にビルド・デプロイされる
-
-**設定:**
-
-- Framework Preset: `Astro`
-- Build Command: `npm run build`
-- Output Directory: `dist`
 
 ## 📄 ライセンス
 
