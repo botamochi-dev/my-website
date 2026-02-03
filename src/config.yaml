@@ -1,22 +1,22 @@
 site:
-  name: ポートフォリオ
-  site: 'https://yourdomain.com'
+  name: botamochi-dev
+  site: 'https://botamochi-dev.vercel.app'
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId:
 
 # Default SEO metadata
 metadata:
   title:
-    default: ポートフォリオサイト
-    template: '%s — ポートフォリオ'
-  description: 'Web開発者のポートフォリオサイト。プロジェクトの紹介や技術ブログを掲載しています。'
+    default: botamochi-dev
+    template: '%s — botamochi-dev'
+  description: 'ポートフォリオやブログを掲載しています'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: ポートフォリオ
+    site_name: botamochi-dev
     images:
       - url: '~/assets/images/default.png'
         width: 1200
