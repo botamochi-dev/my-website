@@ -1,4 +1,4 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getBlogPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -41,29 +41,14 @@ export const footerData = {
       ],
     },
     {
-      title: '技術スタック',
-      links: [
-        { text: 'React', href: '#' },
-        { text: 'Vue.js', href: '#' },
-        { text: 'Astro', href: '#' },
-        { text: 'Node.js', href: '#' },
-        { text: 'Python', href: '#' },
-      ],
-    },
-    {
       title: 'リソース',
       links: [
-        { text: 'ドキュメント', href: '#' },
         { text: 'GitHub', href: 'https://github.com/botamochi-dev' },
         { text: 'ブログ記事', href: getBlogPermalink() },
       ],
     },
   ],
-  socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/botamochi-dev' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-  ],
+  socialLinks: [{ ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/botamochi-dev' }],
   footNote: `
     © 2026 botamochi-dev · All rights reserved.
   `,
