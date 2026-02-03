@@ -10,7 +10,6 @@ site:
 metadata:
   title:
     default: botamochi-dev
-    template: '%s — botamochi-dev'
   description: 'ポートフォリオやブログを掲載しています'
   robots:
     index: true
