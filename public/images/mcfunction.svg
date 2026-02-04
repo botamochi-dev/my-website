@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   sodipodi:docname="名称未設定のデザイン.png"
+   inkscape:export-filename="名称未設定のデザイン.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="512"
+       height="512"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     style="display:inline"
+     transform="translate(0.62890625,-1.2558594)">
+    <g
+       id="g10">
+      <path
+         d="m 391.37109,393.25586 v 60 60 h 60 60 v -60 -60 h -60 z"
+         style="fill:#6bb08d;fill-opacity:1"
+         id="path10" />
+      <path
+         d="m 195.37109,393.25586 v 60 60 h 60 60 v -60 -60 h -60 z"
+         style="fill:#6bb08d;fill-opacity:1"
+         id="path9" />
+      <path
+         d="m -0.62890625,393.25586 v 60 60 H 59.371094 119.37109 v -60 -60 H 59.371094 Z"
+         style="fill:#5d5099;fill-opacity:1"
+         id="path8" />
+      <path
+         d="m 391.37109,197.25586 v 60 60 h 60 60 v -60 -60 h -60 z"
+         style="fill:#6bb08d;fill-opacity:1"
+         id="path7" />
+      <path
+         d="m 195.37109,197.25586 v 60 60 h 60 60 v -60 -60 h -60 z"
+         style="fill:#5d5099;fill-opacity:1"
+         id="path6" />
+      <path
+         d="m -0.62890625,197.25586 v 60 60 H 59.371094 119.37109 v -60 -60 H 59.371094 Z"
+         style="fill:#d57e3e"
+         id="path5" />
+      <path
+         d="M 391.37109,1.2558594 V 61.255859 121.25586 h 60 60 V 61.255859 1.2558594 h -60 z"
+         style="fill:#5d5099;fill-opacity:1"
+         id="path4" />
+      <path
+         d="M 195.37109,1.2558594 V 61.255859 121.25586 h 60 60 V 61.255859 1.2558594 h -60 z"
+         style="fill:#d57e3e"
+         id="path3" />
+      <path
+         d="M -0.62890625,1.2558594 V 61.255859 121.25586 H 59.371094 119.37109 V 61.255859 1.2558594 H 59.371094 Z"
+         style="fill:#d57e3e"
+         id="path2" />
+    </g>
+  </g>
+</svg>
