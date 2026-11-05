@@ -1,0 +1,50 @@
+---
+import GameLayout from '~/layouts/GameLayout.astro';
+import MenuList from '~/components/game/MenuList.astro';
+import PreviewPane from '~/components/game/PreviewPane.astro';
+import CategoryTabs from '~/components/game/CategoryTabs.astro';
+import InfoTable from '~/components/game/InfoTable.astro';
+import WorkChips from '~/components/game/WorkChips.astro';
+import WorkMedia from '~/components/game/WorkMedia.astro';
+
+import { fetchWorks } from '~/utils/works';
+import { getHomePermalink, getPermalink } from '~/utils/permalinks';
+
+const works = await fetchWorks();
+
+const items = works.map((w) => ({
+  href: getPermalink(`works/${w.id}`),
+  label: w.data.title,
+  preview: w.id,
+  tag: w.data.test ? 'TEST' : undefined,
+  category: w.data.category,
+}));
+---
+
+<GameLayout
+  metadata={{ title: '作品', description: 'botamochi の作品の一覧です。' }}
+  crumb={[{ label: 'MENU', href: getHomePermalink() }, { label: 'WORKS' }]}
+  hints="works"
+  parent={getHomePermalink()}
+>
+  <div class="screen screen-list">
+    <div class="menu-col">
+      <CategoryTabs />
+      <MenuList items={items} size="l" label="作品" />
+      <p class="menu-empty" data-menu-empty hidden>
+        この分類の作品はまだありません。Q と E で分類を切り替えられます。
+      </p>
+    </div>
+    <PreviewPane>
+      {works.map((w, i) => (
+        <section data-preview-for={w.id} hidden={i !== 0}>
+          <WorkMedia work={w.data} />
+          <WorkChips work={w.data} />
+          <h2>{w.data.title}</h2>
+          <p>{w.data.summary}</p>
+          <InfoTable work={w.data} />
+        </section>
+      ))}
+    </PreviewPane>
+  </div>
+</GameLayout>

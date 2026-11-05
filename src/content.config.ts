@@ -66,6 +66,27 @@ const postCollection = defineCollection({
   }),
 });
 
+const workCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: 'src/data/works' }),
+  schema: z.object({
+    title: z.string(),
+    category: z.enum(['game', 'gfx', 'tool', 'web']),
+    summary: z.string(),
+    role: z.string(),
+    team: z.number().int().positive(),
+    period: z.object({ start: z.string(), end: z.string().optional() }),
+    tech: z.array(z.string()),
+    video: z.string().optional(),
+    thumbnail: z.string().optional(),
+    links: z.object({ github: z.url().optional(), demo: z.url().optional() }).default({}),
+    order: z.number().default(0),
+    // テスト用のデータなら true。本番で公開する前に、本物の作品に差し替える
+    test: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   post: postCollection,
+  works: workCollection,
 };

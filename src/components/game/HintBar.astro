@@ -1,0 +1,48 @@
+---
+export type HintKind = 'menu' | 'list' | 'works' | 'work' | 'page';
+
+export interface Props {
+  kind: HintKind;
+}
+
+const { kind } = Astro.props;
+
+const HINTS: Record<HintKind, [string, string][]> = {
+  menu: [
+    ['↑ ↓', '選ぶ'],
+    ['Enter', '決定'],
+  ],
+  list: [
+    ['↑ ↓', '選ぶ'],
+    ['Enter', '決定'],
+    ['Esc', '戻る'],
+  ],
+  works: [
+    ['↑ ↓', '選ぶ'],
+    ['Q E', '分類'],
+    ['Enter', '決定'],
+    ['Esc', '戻る'],
+  ],
+  work: [
+    ['↑ ↓', '選ぶ'],
+    ['← →', '前後の作品'],
+    ['Enter', '決定'],
+    ['Esc', '一覧へ'],
+  ],
+  page: [
+    ['↑ ↓', '選ぶ'],
+    ['Enter', '決定'],
+    ['Esc', '戻る'],
+  ],
+};
+---
+
+<footer class="hints" aria-label="操作の案内">
+  {HINTS[kind].map(([key, label]) => (
+    <span class="hint-key">
+      <kbd>{key}</kbd>
+      {label}
+    </span>
+  ))}
+  <span class="hint-pad">コントローラーでも操作できます</span>
+</footer>

@@ -1,0 +1,54 @@
+---
+import MenuList from '~/components/game/MenuList.astro';
+import PreviewPane from '~/components/game/PreviewPane.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+import type { Post } from '~/types';
+
+// ブログの一覧・分類・タグの画面で共通の、記事名のメニューと予告
+export interface Props {
+  posts: Post[];
+  label: string;
+  prevUrl?: string;
+  nextUrl?: string;
+}
+
+const { posts, label, prevUrl, nextUrl } = Astro.props;
+
+const items = [
+  ...posts.map((p) => ({ href: getPermalink(p.permalink, 'post'), label: p.title, preview: p.id })),
+  ...(nextUrl ? [{ href: nextUrl, label: '次のページ', preview: 'page-next' }] : []),
+  ...(prevUrl ? [{ href: prevUrl, label: '前のページ', preview: 'page-prev' }] : []),
+];
+---
+
+<div class="screen screen-list">
+  <div class="menu-col">
+    {items.length ? (
+      <MenuList items={items} size="l" label={label} />
+    ) : (
+      <p class="menu-empty">まだ記事がありません。</p>
+    )}
+  </div>
+  <PreviewPane>
+    {posts.map((p, i) => (
+      <section data-preview-for={p.id} hidden={i !== 0}>
+        <div class="k">
+          <time datetime={p.publishDate.toISOString()}>{getFormattedDate(p.publishDate)}</time>
+          {p.category && <span class="ml-4">{p.category.title}</span>}
+        </div>
+        <h2>{p.title}</h2>
+        <p>{p.excerpt || '[記事の概要]'}</p>
+      </section>
+    ))}
+    <section data-preview-for="page-next" hidden>
+      <h2>次のページ</h2>
+      <p>もっと古い記事を表示します。</p>
+    </section>
+    <section data-preview-for="page-prev" hidden>
+      <h2>前のページ</h2>
+      <p>新しい記事に戻ります。</p>
+    </section>
+  </PreviewPane>
+</div>

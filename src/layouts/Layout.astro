@@ -5,14 +5,10 @@ import { I18N } from 'astrowind:config';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
-import CustomStyles from '~/components/CustomStyles.astro';
-import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
-import BasicScripts from '~/components/common/BasicScripts.astro';
 
-// Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
@@ -26,25 +22,40 @@ const { language, textDirection } = I18N;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} transition:animate="none">
   <head>
     <CommonMeta />
     <Favicons />
-    <CustomStyles />
-    <ApplyColorMode />
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
 
-    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500;700&family=Roboto+Flex:wdth,wght@25..151,100..1000&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap"
+    />
 
-    <!-- Comment the line below to disable View Transitions -->
+    <!-- 「動きを減らす」の設定を、描画の前に反映する（ちらつきを防ぐ） -->
+    <script is:inline>
+      (function () {
+        const root = document.documentElement;
+        root.classList.add('js');
+        let calm = false;
+        try {
+          calm = localStorage.getItem('game:calm') === '1';
+        } catch {
+          calm = false;
+        }
+        if (calm || window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('calm');
+      })();
+    </script>
+
     <ClientRouter fallback="swap" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body>
     <slot />
-
-    <BasicScripts />
   </body>
 </html>

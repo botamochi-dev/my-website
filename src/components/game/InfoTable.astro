@@ -1,0 +1,22 @@
+---
+import { formatPeriod, formatTeam } from '~/utils/works';
+import type { Work } from '~/utils/works';
+
+export interface Props {
+  work: Work['data'];
+  class?: string;
+}
+
+const { work, class: className = '' } = Astro.props;
+---
+
+<dl class:list={['info', className]}>
+  <dt>担当</dt>
+  <dd>{work.role}</dd>
+  <dt>人数</dt>
+  <dd>{formatTeam(work.team)}</dd>
+  <dt>期間</dt>
+  <dd>{formatPeriod(work.period)}</dd>
+  <dt>技術</dt>
+  <dd>{work.tech.join(' / ')}</dd>
+</dl>

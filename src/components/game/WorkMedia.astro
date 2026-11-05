@@ -1,0 +1,21 @@
+---
+import type { Work } from '~/utils/works';
+
+export interface Props {
+  work: Work['data'];
+  /** 予告パネルでは小さく、詳細では大きく出す */
+  note?: string;
+}
+
+const { work, note = '動画 30〜60 秒' } = Astro.props;
+---
+
+{work.video ? (
+  <video class="shot" src={work.video} poster={work.thumbnail} preload="none" controls muted playsinline />
+) : work.thumbnail ? (
+  <img class="shot" src={work.thumbnail} alt="" loading="lazy" decoding="async" />
+) : (
+  <div class="shot shot-empty">
+    [{work.title} の{note}]
+  </div>
+)}

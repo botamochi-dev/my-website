@@ -1,0 +1,15 @@
+---
+import { categoryLabel } from '~/data/profile';
+import type { Work } from '~/utils/works';
+
+export interface Props {
+  work: Work['data'];
+}
+
+const { work } = Astro.props;
+---
+
+<div class="chips">
+  {work.test && <span class="chip chip-test">テスト</span>}
+  <span class="chip">{categoryLabel(work.category)}</span>
+</div>

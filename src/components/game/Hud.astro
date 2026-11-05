@@ -1,0 +1,47 @@
+---
+import { getHomePermalink } from '~/utils/permalinks';
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  crumb: Crumb[];
+  parent?: string;
+}
+
+const { crumb, parent } = Astro.props;
+---
+
+<header class="hud">
+  <a class="hud-mark" href={getHomePermalink()}>
+    botamochi
+  </a>
+  <nav class="hud-crumb" aria-label="現在地">
+    <ol>
+      {crumb.map((c, i) => (
+        <li>
+          {c.href && i < crumb.length - 1 ? (
+            <a href={c.href}>{c.label}</a>
+          ) : (
+            <span aria-current={i === crumb.length - 1 ? 'page' : undefined}>{c.label}</span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+  <div class="hud-tools">
+    {parent && (
+      <a class="pill hud-back" href={parent}>
+        戻る
+      </a>
+    )}
+    <button class="pill js-only" type="button" data-pref="sound" aria-pressed="false">
+      効果音 オフ
+    </button>
+    <button class="pill js-only" type="button" data-pref="calm" aria-pressed="false">
+      動きを減らす
+    </button>
+  </div>
+</header>

@@ -1,0 +1,58 @@
+---
+export interface MenuEntry {
+  href: string;
+  label: string;
+  /** 読み上げ用の名前（英語の見出しに日本語を添えるときなど） */
+  ariaLabel?: string;
+  /** 右側の予告パネルで表示する中身の名前（PreviewPane の data-preview-for と合わせる） */
+  preview?: string;
+  /** 名前の後ろに付ける小さな印（TEST など） */
+  tag?: string;
+  /** WORKS の分類での絞り込みに使う */
+  category?: string;
+  /** 決定したときに、移動せずにこの文字をコピーする */
+  copy?: string;
+  /** 決定したときに、移動せずにこのお知らせを出す（準備中の項目など） */
+  notice?: string;
+  current?: boolean;
+}
+
+export interface Props {
+  items: MenuEntry[];
+  size: 'xl' | 'l' | 'm';
+  label: string;
+  class?: string;
+  /** 画面に入ったときに項目を順に流し込む */
+  enter?: boolean;
+}
+
+const { items, size, label, class: className = '', enter = true } = Astro.props;
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+---
+
+<nav aria-label={label} class={className}>
+  <ul class:list={['menu', `menu-${size}`, { 'menu-enter': enter }]} data-menu>
+    {items.map((item, i) => (
+      <li data-category={item.category}>
+        <a
+          class:list={['mi', { 'is-selected': i === 0 }]}
+          href={item.href}
+          data-item
+          data-preview={item.preview}
+          data-copy={item.copy}
+          data-notice={item.notice}
+          aria-label={item.ariaLabel}
+          aria-current={item.current ? 'page' : undefined}
+          target={isExternal(item.href) ? '_blank' : undefined}
+          rel={isExternal(item.href) ? 'noopener noreferrer' : undefined}
+          data-astro-reload={isExternal(item.href) ? true : undefined}
+          style={enter ? `--i:${i}` : undefined}
+        >
+          <i class="mi-tri" aria-hidden="true" />
+          <span class="mi-tx">{item.label}</span>
+          {item.tag && <span class="mi-tag">{item.tag}</span>}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

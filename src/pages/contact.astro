@@ -1,43 +1,50 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import GameLayout from '~/layouts/GameLayout.astro';
+import MenuList from '~/components/game/MenuList.astro';
+import PreviewPane from '~/components/game/PreviewPane.astro';
 
-const metadata = {
-  title: 'お問い合わせ',
-};
+import { PROFILE } from '~/data/profile';
+import { getHomePermalink } from '~/utils/permalinks';
+
+const email = PROFILE.email;
+
+const items = [
+  email
+    ? { href: `mailto:${email}`, label: 'メールアドレスをコピー', preview: 'mail', copy: email }
+    : { href: '#', label: 'メールアドレスをコピー', preview: 'mail', notice: 'メールアドレスは準備中です' },
+  { href: PROFILE.github, label: 'GitHub', preview: 'github' },
+  PROFILE.pdf
+    ? { href: PROFILE.pdf, label: 'ポートフォリオ PDF', preview: 'pdf' }
+    : { href: '#', label: 'ポートフォリオ PDF', preview: 'pdf', notice: 'PDF は準備中です' },
+];
 ---
 
-<Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
-
-  <HeroText
-    tagline="Contact"
-    title="お問い合わせ"
-    subtitle="ご質問やご相談がありましたら、下記の連絡先からお気軽にご連絡ください。"
-  />
-
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="お問い合わせ方法"
-    subtitle="以下のいずれかの方法でご連絡いただけます。"
-    items={[
-      {
-        title: 'メール',
-        description: 'your-email@example.com',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'GitHub',
-        description: 'github.com/botamochi-dev',
-        icon: 'tabler:brand-github',
-      },
-      {
-        title: 'X (Twitter)',
-        description: '@yourusername',
-        icon: 'tabler:brand-x',
-      },
-    ]}
-  />
-</Layout>
+<GameLayout
+  metadata={{ title: '連絡先', description: 'botamochi への連絡先です。' }}
+  crumb={[{ label: 'MENU', href: getHomePermalink() }, { label: 'CONTACT' }]}
+  hints="list"
+  parent={getHomePermalink()}
+>
+  <div class="screen">
+    <div class="menu-col">
+      <MenuList items={items} size="l" label="連絡先" />
+    </div>
+    <PreviewPane>
+      <section data-preview-for="mail">
+        <div class="k">MAIL</div>
+        <h2 class="select-all">{email || '[メールアドレス]'}</h2>
+        <p>{email ? '決定するとコピーします。' : '公開用のアドレスを準備しています。'}</p>
+      </section>
+      <section data-preview-for="github" hidden>
+        <div class="k">GITHUB</div>
+        <h2>{PROFILE.githubName}</h2>
+        <p>コードはここにあります。新しいタブで開きます。</p>
+      </section>
+      <section data-preview-for="pdf" hidden>
+        <div class="k">PDF</div>
+        <h2>ポートフォリオ PDF</h2>
+        <p>{PROFILE.pdf ? '応募用の PDF です。' : '[応募用の PDF。サイトと同じ内容を紙でも読めるようにする]'}</p>
+      </section>
+    </PreviewPane>
+  </div>
+</GameLayout>

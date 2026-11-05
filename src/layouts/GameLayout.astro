@@ -1,0 +1,45 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Hud from '~/components/game/Hud.astro';
+import HintBar from '~/components/game/HintBar.astro';
+
+import type { MetaData } from '~/types';
+import type { Crumb } from '~/components/game/Hud.astro';
+import type { HintKind } from '~/components/game/HintBar.astro';
+
+export interface Props {
+  metadata?: MetaData;
+  crumb: Crumb[];
+  hints: HintKind;
+  /** Esc・B ボタン・戻るボタンで移る先。MENU では無し */
+  parent?: string;
+  /** 作品の詳細で、← → で移る先 */
+  prev?: string;
+  next?: string;
+}
+
+const { metadata, crumb, hints, parent, prev, next } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <canvas id="dot-field" class="fx-canvas fx-dots" aria-hidden="true" transition:persist></canvas>
+  <div
+    class="app"
+    data-parent={parent}
+    data-prev={prev}
+    data-next={next}
+    data-reading={hints === 'work' || hints === 'page' ? 'true' : undefined}
+  >
+    <Hud crumb={crumb} parent={parent} />
+    <main id="main" class="view" tabindex="-1">
+      <slot />
+    </main>
+    <HintBar kind={hints} />
+  </div>
+  <canvas id="wipe" class="fx-canvas fx-wipe" aria-hidden="true" transition:persist></canvas>
+  <div id="toast" class="toast" role="status" transition:persist></div>
+</Layout>
+
+<script>
+  import '~/scripts/game/index';
+</script>

@@ -1,0 +1,13 @@
+---
+// 作品の詳細の見出し。WebGL が使えるときは、同じ文字を波打つ画として上に重ねる（scripts/game/warp-title.ts）。
+// 見出しの文字は <h1> に残すので、読み上げと検索にはそのまま届く
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="warp" data-warp={title}>
+  <h1 class="warp-title">{title}</h1>
+</div>

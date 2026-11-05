@@ -1,0 +1,13 @@
+---
+// 選んでいる項目の予告を出す枠。中に data-preview-for を付けた要素を並べ、
+// メニューの data-preview と名前が合うものだけを表示する（切り替えは scripts/game/menu-nav.ts）
+export interface Props {
+  label?: string;
+}
+
+const { label = '選んでいる項目の説明' } = Astro.props;
+---
+
+<aside class="side-col side" aria-label={label} aria-live="polite" data-preview-pane>
+  <slot />
+</aside>

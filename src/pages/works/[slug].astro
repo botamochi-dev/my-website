@@ -1,0 +1,91 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+
+import GameLayout from '~/layouts/GameLayout.astro';
+import MenuList from '~/components/game/MenuList.astro';
+import InfoTable from '~/components/game/InfoTable.astro';
+import WarpTitle from '~/components/game/WarpTitle.astro';
+import WorkChips from '~/components/game/WorkChips.astro';
+import WorkMedia from '~/components/game/WorkMedia.astro';
+
+import { fetchWorks } from '~/utils/works';
+import { getHomePermalink, getPermalink } from '~/utils/permalinks';
+
+export const getStaticPaths = (async () => {
+  const works = await fetchWorks();
+  return works.map((work, i) => ({
+    params: { slug: work.id },
+    props: {
+      work,
+      prev: works[(i - 1 + works.length) % works.length],
+      next: works[(i + 1) % works.length],
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { work, prev, next } = Astro.props as Props;
+const { Content } = await render(work);
+const d = work.data;
+
+const listHref = getPermalink('works');
+const prevHref = getPermalink(`works/${prev.id}`);
+const nextHref = getPermalink(`works/${next.id}`);
+---
+
+<GameLayout
+  metadata={{ title: d.title, description: d.summary }}
+  crumb={[{ label: 'MENU', href: getHomePermalink() }, { label: 'WORKS', href: listHref }, { label: d.title }]}
+  hints="work"
+  parent={listHref}
+  prev={prevHref}
+  next={nextHref}
+>
+  <article class="page">
+    <WarpTitle title={d.title} />
+    <WorkChips work={d} />
+    <div class="cols">
+      <div class="cols-main">
+        <p class="lead">{d.summary}</p>
+        <WorkMedia work={d} note="動画 30〜60 秒。遊べるデモがあれば、ここで遊べるようにする" />
+        <div class="prose prose-game max-w-none">
+          <Content />
+        </div>
+      </div>
+      <aside class="cols-aside" aria-label="作品の情報">
+        <div class="statbox">
+          <InfoTable work={d} />
+          <div class="links">
+            {d.links.github ? (
+              <a href={d.links.github} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+            ) : (
+              <span>GitHub（準備中）</span>
+            )}
+            {d.links.demo ? (
+              <a href={d.links.demo} target="_blank" rel="noopener noreferrer">
+                デモ
+              </a>
+            ) : (
+              <span>デモ（準備中）</span>
+            )}
+          </div>
+        </div>
+      </aside>
+    </div>
+    <MenuList
+      class="endmenu"
+      size="m"
+      label="作品の移動"
+      enter={false}
+      items={[
+        { href: nextHref, label: `次の作品：${next.data.title}` },
+        { href: prevHref, label: `前の作品：${prev.data.title}` },
+        { href: listHref, label: '作品一覧に戻る' },
+      ]}
+    />
+  </article>
+</GameLayout>

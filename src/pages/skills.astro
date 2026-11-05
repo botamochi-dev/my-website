@@ -1,0 +1,52 @@
+---
+import GameLayout from '~/layouts/GameLayout.astro';
+import MenuList from '~/components/game/MenuList.astro';
+import PreviewPane from '~/components/game/PreviewPane.astro';
+
+import { SKILLS } from '~/data/profile';
+import { fetchWorks } from '~/utils/works';
+import { getHomePermalink, getPermalink } from '~/utils/permalinks';
+
+const works = await fetchWorks();
+const titleOf = (slug: string) => works.find((w) => w.id === slug)?.data.title;
+
+// 決定すると、その技術を使った最初の作品へ。使った作品が無ければ作品の一覧へ
+const items = SKILLS.map((s, i) => ({
+  href: getPermalink(s.works[0] && titleOf(s.works[0]) ? `works/${s.works[0]}` : 'works'),
+  label: s.name,
+  preview: `skill-${i}`,
+}));
+---
+
+<GameLayout
+  metadata={{ title: 'できること', description: '使っている言語と技術です。' }}
+  crumb={[{ label: 'MENU', href: getHomePermalink() }, { label: 'SKILLS' }]}
+  hints="list"
+  parent={getHomePermalink()}
+>
+  <div class="screen screen-list">
+    <div class="menu-col">
+      <MenuList items={items} size="l" label="できること" />
+    </div>
+    <PreviewPane>
+      {SKILLS.map((s, i) => {
+        const used = s.works.map(titleOf).filter(Boolean);
+        return (
+          <section data-preview-for={`skill-${i}`} hidden={i !== 0}>
+            <div class="k">SKILL</div>
+            <h2>{s.name}</h2>
+            <dl class="info">
+              <dt>経験</dt>
+              <dd>{s.experience}</dd>
+              <dt>作品</dt>
+              <dd>{used.length ? used.join('、') : '[使った作品]'}</dd>
+            </dl>
+            <p class="mt-3">
+              {used.length ? '決定すると、この技術を使った作品へ移ります。' : '決定すると作品の一覧へ移ります。'}
+            </p>
+          </section>
+        );
+      })}
+    </PreviewPane>
+  </div>
+</GameLayout>

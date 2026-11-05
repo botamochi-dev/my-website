@@ -1,0 +1,20 @@
+---
+import { WORK_CATEGORIES } from '~/data/profile';
+
+// 絞り込みは JavaScript で行う。JavaScript が無いときはタブを隠し、全作品を並べる
+const tabs = [{ id: 'all', label: 'すべて' }, ...WORK_CATEGORIES];
+---
+
+<div class="tabs js-only" role="group" aria-label="分類で絞り込む" data-tabs>
+  <kbd class="tabs-key" aria-hidden="true">
+    Q
+  </kbd>
+  {tabs.map((t, i) => (
+    <button class="tab" type="button" data-tab={t.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+      {t.label}
+    </button>
+  ))}
+  <kbd class="tabs-key" aria-hidden="true">
+    E
+  </kbd>
+</div>
