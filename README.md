@@ -65,15 +65,15 @@
 
 ### 必要な環境
 
-- Node.js 18.17.1以上、20.3.0以上、または21.0.0以上
+- Node.js 22.12.0以上の22系、または24系（推奨は [`.node-version`](./.node-version) の版）
 - npm
 
 ### インストール
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/botamochi-dev/blog.git
-cd blog
+git clone https://github.com/botamochi-dev/my-website.git
+cd my-website
 
 # 依存関係をインストール
 npm install

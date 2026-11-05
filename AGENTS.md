@@ -92,7 +92,8 @@ npm run fix          # eslint --fix + prettier -w
   - scope は必ず付ける（例: `blog`, `header`, `deps`, `config`, `docs`）。やったことは日本語で「〜した」で終え、句点と本文は付けない
   - type: `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore`
 - コミット時に husky + lint-staged が ESLint / Prettier を自動実行する。フックをスキップ（`--no-verify`）しない
-- CI（`.github/workflows/actions.yaml`）は Node 18/20/22 でのビルドと Node 24 での `npm run check` を実行する
+- CI（`.github/workflows/actions.yaml`）は `.node-version` の Node.js で `npm run build`（`Build and Test`）と `npm run check`（`check`）を実行する。ジョブ名を変えるときは、GitHub のルールセットの必須チェックも変える必要がある
+- Node.js のバージョンは `.node-version` が正。`package.json` の `engines` もこれに合わせる
 - コミット・プッシュ・PR作成はユーザーに頼まれたときだけ行う
 
 ## 依存関係
