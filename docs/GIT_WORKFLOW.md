@@ -71,7 +71,7 @@ git checkout -b feat/your-feature-name
 
 - 1行だけで書き、本文（2行目以降）は付けない
 - scope は必ず付け、変更した場所や機能を短い英小文字で書く（例: `blog`, `header`, `deps`, `config`, `docs`）
-- やったことは日本語で「〜した」で終え、句点は付けない
+- やったことは日本語で「〜を追加」「〜を修正」のように体言止めで書き（「〜した」にしない）、句点は付けない
 
 **Type:**
 
@@ -86,9 +86,9 @@ git checkout -b feat/your-feature-name
 **例:**
 
 ```bash
-git commit -m "feat(blog): ブログ検索機能を追加した"
-git commit -m "fix(header): レスポンシブ表示の不具合を直した"
-git commit -m "docs(readme): READMEに環境構築手順を追加した"
+git commit -m "feat(blog): ブログ検索機能を追加"
+git commit -m "fix(header): レスポンシブ表示の不具合を修正"
+git commit -m "docs(readme): READMEに環境構築手順を追加"
 ```
 
 #### 自動フォーマット
