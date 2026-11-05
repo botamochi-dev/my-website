@@ -20,7 +20,8 @@
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "skills:sync": "node scripts/sync-skills.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": [

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "name": "playwright",
+  "repository": "openai/skills",
+  "path": "skills/.curated/playwright",
+  "commit": "49f948faa9258a0c61caceaf225e179651397431",
+  "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/playwright"
+}
