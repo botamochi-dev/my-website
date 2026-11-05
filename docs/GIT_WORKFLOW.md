@@ -157,16 +157,13 @@ git branch -d feat/your-feature-name
 
 - **トリガー**: `main`ブランチへのプッシュ、プルリクエスト
 - **実行内容**:
-  - Node.js 18, 20, 22でのビルドテスト
+  - `.node-version` の Node.js でのビルド
   - ESLint、Prettier、Astroチェック
 
-#### Renovate自動マージ（`.github/workflows/autofix.yml`）
+#### Renovate の自動マージ
 
-- **トリガー**: Renovateによるプルリクエスト
-- **実行内容**:
-  - パッチ・マイナーバージョンアップの自動承認
-  - CI通過後に自動マージ
-  - メジャーバージョンアップは手動レビュー
+- 専用のワークフローは無い。Renovate が GitHub の自動マージ機能を使い、CI 通過後にマージする
+- メジャーバージョンアップは手動レビュー
 
 ### Renovate
 

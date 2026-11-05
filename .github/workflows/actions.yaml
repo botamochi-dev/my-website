@@ -8,40 +8,38 @@ on:
     branches:
       - main
 
-# 同じコミットで複数のジョブが実行されないようにする
+# 同じブランチで複数のジョブが実行されないようにする
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+# CI はコードを読むだけなので、トークンの権限は読み取りに絞る
+permissions:
+  contents: read
 
 jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 18
-          - 20
-          - 22
     steps:
       - uses: actions/checkout@v7
-      - name: Use Node.js v${{ matrix.node-version }}
+      # Node のバージョンは .node-version に揃える（Vercel・手元と同じ版でビルドする）
+      - name: Use Node.js from .node-version
         uses: actions/setup-node@v7
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .node-version
           cache: npm
       - run: npm ci
       - run: npm run build
-      # - run: npm test
 
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Use Node.js 24
+      - name: Use Node.js from .node-version
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: .node-version
           cache: npm
       - run: npm ci
       - run: npm run check

@@ -83,8 +83,8 @@ docs/update-readme   # ドキュメント更新
 
 ### 必須ツール
 
-- Node.js 18.17.1以上
-- npm または pnpm
+- Node.js 22.12.0以上の22系、または24系（推奨は [`.node-version`](../.node-version) の版）
+- npm
 - Git
 
 ### VS Code拡張機能（推奨）

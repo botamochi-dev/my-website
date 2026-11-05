@@ -9,119 +9,59 @@
     ":automergeMinor"
   ],
   "timezone": "Asia/Tokyo",
-  "schedule": [
-    "before 4am on Monday"
-  ],
-  "labels": [
-    "dependencies",
-    "renovate"
-  ],
+  "schedule": ["before 4am on Monday"],
+  "labels": ["dependencies", "renovate"],
   "commitMessagePrefix": "chore(deps):",
   "prHourlyLimit": 10,
   "prConcurrentLimit": 15,
   "minimumReleaseAge": "14 days",
   "internalChecksFilter": "strict",
-  "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "squash",
   "platformAutomerge": true,
-  "ignoreTests": false,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on the first day of the month"],
+    "automerge": true
+  },
   "packageRules": [
     {
       "description": "Astro関連パッケージをグループ化",
       "groupName": "Astro packages",
-      "matchPackagePatterns": [
-        "^astro$",
-        "^@astrojs/",
-        "^astro-"
-      ],
-      "automerge": true,
-      "schedule": [
-        "before 4am on Monday"
-      ]
+      "matchPackageNames": ["/^astro$/", "/^@astrojs//", "/^astro-/"]
     },
     {
       "description": "ESLint/Prettier関連をグループ化",
       "groupName": "Linting and formatting",
-      "matchPackagePatterns": [
-        "eslint",
-        "prettier"
-      ],
-      "automerge": true
+      "matchPackageNames": ["/eslint/", "/prettier/"]
     },
     {
       "description": "TypeScript関連をグループ化",
       "groupName": "TypeScript",
-      "matchPackagePatterns": [
-        "typescript",
-        "^@types/"
-      ],
-      "automerge": true
+      "matchPackageNames": ["/typescript/", "/^@types//"]
     },
     {
       "description": "Tailwind関連をグループ化",
       "groupName": "Tailwind CSS",
-      "matchPackagePatterns": [
-        "tailwind"
-      ],
-      "automerge": true
+      "matchPackageNames": ["/tailwind/"]
     },
     {
-      "description": "メジャーバージョンアップは手動レビュー",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "automerge": false,
-      "minimumReleaseAge": "21 days",
-      "labels": [
-        "dependencies",
-        "renovate",
-        "major"
-      ]
-    },
-    {
-      "description": "マイナー・パッチは自動マージ",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
-    },
-    {
-      "description": "devDependenciesは積極的に自動マージ",
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "automerge": true,
+      "description": "devDependencies のマイナー・パッチは待機期間を短くする",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
       "minimumReleaseAge": "7 days"
     },
     {
-      "description": "セキュリティアラートは即座に自動マージ",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchUpdateTypes": [
-        "patch"
-      ],
-      "vulnerabilityAlerts": {
-        "enabled": true
-      },
-      "minimumReleaseAge": null,
-      "automerge": true,
-      "labels": [
-        "security",
-        "dependencies"
-      ]
+      "description": "メジャーバージョンアップは手動レビュー。上のルールに上書きされないよう最後に置く",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "minimumReleaseAge": "21 days",
+      "labels": ["dependencies", "renovate", "major"]
     }
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": [
-      "security",
-      "dependencies"
-    ],
+    "labels": ["security", "dependencies"],
     "minimumReleaseAge": null,
     "automerge": true
   }
