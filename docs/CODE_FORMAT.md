@@ -266,7 +266,7 @@ export default [
 git add src/components/Header.astro
 
 # 2. コミット実行
-git commit -m "feat(header): ヘッダーコンポーネントを更新した"
+git commit -m "feat(header): ヘッダーコンポーネントを更新"
 
 # 3. 自動実行される処理
 # → lint-stagedがステージされたファイルを検出

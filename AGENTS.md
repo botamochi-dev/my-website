@@ -89,8 +89,8 @@ npm run fix          # eslint --fix + prettier -w
 詳細は [docs/GIT_WORKFLOW.md](./docs/GIT_WORKFLOW.md)。
 
 - `main` へ直接プッシュしない。作業ブランチ `<type>/<description>`（例: `feat/add-blog-search`）を切り、PR 経由でマージする
-- コミットメッセージは Conventional Commits の1行だけ: `<type>(<scope>): <やったこと>`（例: `fix(header): レスポンシブ表示の不具合を直した`）
-  - scope は必ず付ける（例: `blog`, `header`, `deps`, `config`, `docs`）。やったことは日本語で「〜した」で終え、句点と本文は付けない
+- コミットメッセージは Conventional Commits の1行だけ: `<type>(<scope>): <やったこと>`（例: `fix(header): レスポンシブ表示の不具合を修正`）
+  - scope は必ず付ける（例: `blog`, `header`, `deps`, `config`, `docs`）。やったことは日本語で「〜を追加」「〜を修正」のように体言止めで書き（「〜した」にしない）、句点と本文は付けない
   - type: `feat` / `fix` / `docs` / `style` / `refactor` / `test` / `chore`
 - コミット時に husky + lint-staged が ESLint / Prettier を自動実行する。フックをスキップ（`--no-verify`）しない
 - CI（`.github/workflows/actions.yaml`）は `.node-version` の Node.js で `npm run build`（`Build and Test`）と `npm run check`（`check`）を実行する。ジョブ名を変えるときは、GitHub のルールセットの必須チェックも変える必要がある

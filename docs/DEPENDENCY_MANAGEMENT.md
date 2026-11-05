@@ -183,7 +183,7 @@ npm audit fix --force
 ```bash
 # ✅ Good - package-lock.jsonをコミット
 git add package-lock.json
-git commit -m "chore(deps): 依存関係を更新した"
+git commit -m "chore(deps): 依存関係を更新"
 
 # ❌ Bad - package-lock.jsonを削除・無視しない
 # 再現可能なビルドのために必須
@@ -219,7 +219,7 @@ npm run dev
 
 # 6. コミット
 git add package.json package-lock.json
-git commit -m "chore(deps): 依存関係を更新した"
+git commit -m "chore(deps): 依存関係を更新"
 ```
 
 ## トラブルシューティング
