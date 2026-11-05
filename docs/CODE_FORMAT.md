@@ -88,6 +88,8 @@ dist
 node_modules
 .github
 .changeset
+.agents
+.claude
 ```
 
 ### 主な設定の理由
@@ -198,7 +200,7 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro'],
+    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro', '.agents', '.claude'],
   },
 ];
 ```
@@ -233,6 +235,7 @@ export default [
 - `.github/` - GitHub設定
 - `types.generated.d.ts` - 自動生成型定義
 - `.astro/` - Astroキャッシュ
+- `.agents/`, `.claude/` - エージェント用のスキル（配布元の内容をそのまま置くため）
 
 ## 自動フォーマット
 
@@ -260,7 +263,7 @@ export default [
 git add src/components/Header.astro
 
 # 2. コミット実行
-git commit -m "feat: ヘッダーコンポーネントを更新"
+git commit -m "feat(header): ヘッダーコンポーネントを更新した"
 
 # 3. 自動実行される処理
 # → lint-stagedがステージされたファイルを検出
@@ -396,7 +399,7 @@ chmod +x .husky/pre-commit
 
 ### 特定のファイルを除外したい
 
-`.prettierignore` または `.eslintignore` にパターンを追加:
+Prettier は `.prettierignore`、ESLint は `eslint.config.js` の `ignores` にパターンを追加する（`.eslintignore` は ESLint の flat config では使われない）:
 
 ```
 # 特定のファイルを除外

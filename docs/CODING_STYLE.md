@@ -85,6 +85,8 @@ function add(a, b) {
 }
 ```
 
+> 既存コードの `getRelatedPosts`（`src/utils/blog.ts`）と `getImagesOptimized`（`src/utils/images-optimization.ts`）は `export async function` で書かれている。動作に問題はないので、書き換えはせずそのままにする。
+
 ### 型定義
 
 #### 型アノテーション
