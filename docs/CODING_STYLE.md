@@ -181,7 +181,9 @@ const filteredPosts = posts.filter((post) => post.published);
     <h1>{title}</h1>
     {description && <p>{description}</p>}
     <ul>
-      {filteredPosts.map((post) => <li>{post.title}</li>)}
+      {filteredPosts.map((post) => (
+        <li>{post.title}</li>
+      ))}
     </ul>
   </main>
 </Layout>
@@ -216,9 +218,7 @@ const { title, description } = Astro.props;
 
 ```astro
 <!-- ✅ Good - 論理的な順序 -->
-<div class="flex items-center justify-between w-full max-w-7xl mx-auto px-4 py-2">
-  <!-- コンテンツ -->
-</div>
+<div class="flex items-center justify-between w-full max-w-7xl mx-auto px-4 py-2"><!-- コンテンツ --></div>
 
 <!-- 推奨順序 -->
 <!-- 1. レイアウト (flex, grid, block) -->
