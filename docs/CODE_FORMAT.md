@@ -41,11 +41,11 @@
 
 ### 設定ファイル
 
-**ファイル**: `.prettierrc.cjs`
+**ファイル**: `.prettierrc.mjs`
 
 ```javascript
 /** @type {import('prettier').Config} */
-module.exports = {
+export default {
   // 印刷幅: 1行の最大文字数
   printWidth: 120,
 
@@ -65,17 +65,10 @@ module.exports = {
   useTabs: false,
 
   // プラグイン: Astroファイルのサポート
-  plugins: [require.resolve('prettier-plugin-astro')],
+  plugins: ['prettier-plugin-astro'],
 
   // Astro固有の設定
-  overrides: [
-    {
-      files: '*.astro',
-      options: {
-        parser: 'astro',
-      },
-    },
-  ],
+  overrides: [{ files: '*.astro', options: { parser: 'astro' } }],
 };
 ```
 
@@ -147,7 +140,7 @@ const config = {
 **ファイル**: `eslint.config.js`
 
 ```javascript
-import astroEslintParser from 'astro-eslint-parser';
+import * as astroEslintParser from 'astro-eslint-parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import globals from 'globals';
 import js from '@eslint/js';
@@ -183,11 +176,14 @@ export default [
     },
   },
   {
+    // Define the configuration for `<script>` tag.
+    // Script in `<script>` is assigned a virtual file name with the `.js` extension.
     files: ['**/*.{ts,tsx}', '**/*.astro/*.js'],
     languageOptions: {
       parser: typescriptParser,
     },
     rules: {
+      // Note: you must disable the base rule as it can report incorrect errors
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -197,6 +193,13 @@ export default [
         },
       ],
       '@typescript-eslint/no-non-null-assertion': 'off',
+    },
+  },
+  {
+    files: ['src/components/common/Analytics.astro', 'src/components/common/Analytics.astro/**'],
+    rules: {
+      'prefer-rest-params': 'off',
+      'no-var': 'off',
     },
   },
   {

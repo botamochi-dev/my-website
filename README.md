@@ -17,8 +17,8 @@
 
 ### フレームワーク・ライブラリ
 
-- **[Astro 5.0](https://astro.build/)** - 静的サイトジェネレーター
-- **[Tailwind CSS](https://tailwindcss.com/)** - CSSフレームワーク
+- **[Astro 7](https://astro.build/)** - 静的サイトジェネレーター
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - CSSフレームワーク（設定は `src/assets/styles/tailwind.css`）
 - **[MDX](https://mdxjs.com/)** - Markdown + JSX（ブログ記事用）
 
 ### 主要機能
@@ -65,7 +65,7 @@
 
 ### 必要な環境
 
-- Node.js 22.12.0以上の22系、または24系（推奨は [`.node-version`](./.node-version) の版）
+- Node.js 22.23.4以上の22系、または24系（推奨は [`.node-version`](./.node-version) の版）
 - npm
 
 ### インストール
