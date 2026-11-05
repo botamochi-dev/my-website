@@ -35,7 +35,7 @@ Prettier、ESLint、自動フォーマットの設定と使用方法について
 
 **内容:**
 
-- Prettierの設定（`.prettierrc.cjs`）
+- Prettierの設定（`.prettierrc.mjs`）
 - ESLintの設定（`eslint.config.js`）
 - 自動フォーマット（husky + lint-staged）
 - エディタ設定（VS Code）
@@ -83,7 +83,7 @@ docs/update-readme   # ドキュメント更新
 
 ### 必須ツール
 
-- Node.js 22.12.0以上の22系、または24系（推奨は [`.node-version`](../.node-version) の版）
+- Node.js 22.23.4以上の22系、または24系（推奨は [`.node-version`](../.node-version) の版）
 - npm
 - Git
 

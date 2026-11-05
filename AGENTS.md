@@ -6,7 +6,8 @@ AIコーディングエージェント（Claude Code / Codex など）向けの�
 ## プロジェクト概要
 
 - botamochi の個人サイト（ポートフォリオ + ブログ）。[AstroWind](https://github.com/arthelokyo/astrowind) テンプレートがベース
-- **Astro 5**（`output: 'static'`）+ **Tailwind CSS 3** + **MDX**、TypeScript
+- **Astro 7**（`output: 'static'`）+ **Tailwind CSS 4** + **MDX**、TypeScript
+- Tailwind の設定は `src/assets/styles/tailwind.css` の `@theme` などに書く（`tailwind.config.js` は無い）
 - Vercel に自動デプロイ（`main` へのマージで本番反映）
 - サイトの言語は日本語。UIテキスト・ドキュメント・コミットメッセージの本文も日本語で書く
 
@@ -40,7 +41,7 @@ npm run fix          # eslint --fix + prettier -w
 | `src/components/common/`      | メタデータ、テーマ切替、解析などの共通処理                             |
 | `src/layouts/`                | ページレイアウト                                                       |
 | `src/data/post/YYYY/MM/DD.md` | ブログ記事（Markdown / MDX）                                           |
-| `src/content/config.ts`       | コンテンツコレクションのスキーマ（記事フロントマターの定義）           |
+| `src/content.config.ts`       | コンテンツコレクションのスキーマ（記事フロントマターの定義）           |
 | `src/config.yaml`             | サイト全体の設定（サイト名、SEO、ブログ設定など）                      |
 | `src/navigation.ts`           | ヘッダー・フッターのリンク定義                                         |
 | `src/utils/`                  | パーマリンク、画像最適化、ブログ取得などのユーティリティ               |
@@ -80,7 +81,7 @@ npm run fix          # eslint --fix + prettier -w
   ---
   ```
 
-- フロントマターのスキーマは `src/content/config.ts` が正。項目を追加するときはここも更新する
+- フロントマターのスキーマは `src/content.config.ts` が正。項目を追加するときはここも更新する
 - **記事本文はオーナー本人が書くもの。** 明示的に頼まれない限り、記事の本文を新規執筆・書き換えしない（誤字修正やフォーマット修正も、依頼があった場合のみ）
 
 ## Git / PR
@@ -114,7 +115,7 @@ npm run fix          # eslint --fix + prettier -w
 
 同梱しているスキル:
 
-- [astro-framework](.agents/skills/astro-framework/SKILL.md)（delineas/astro-framework-agents, MIT）— Astro のコンポーネント・ルーティング・コンテンツコレクション・画像。このサイトは `output: 'static'` で、コレクションは既存の `src/content/config.ts` を使い続ける（スキルが勧める `src/content.config.ts` への移行は頼まれたときだけ）。SSR・セッション・Server Islands の項目は対象外
+- [astro-framework](.agents/skills/astro-framework/SKILL.md)（delineas/astro-framework-agents, MIT）— Astro のコンポーネント・ルーティング・コンテンツコレクション・画像。このサイトは `output: 'static'` で、コレクションは `src/content.config.ts` に定義している。SSR・セッション・Server Islands の項目は対象外
 - [frontend-design](.agents/skills/frontend-design/SKILL.md)（anthropics/skills）— レイアウト・文字組み・視覚的な階層の設計
 - [web-design-guidelines](.agents/skills/web-design-guidelines/SKILL.md)（vercel-labs/agent-skills）— UI/UX・アクセシビリティの点検
 - [unslop](.agents/skills/unslop/SKILL.md)（heydamir/unslop, CC BY 4.0）— AI が作ったように見える UI の兆候（グラデーション・光る影・絵文字・字間を広げた大文字の見出しなど）の点検と手直し。CC BY 4.0 なので作者の表記を残す
