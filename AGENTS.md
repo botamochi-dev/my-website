@@ -5,7 +5,8 @@ AIコーディングエージェント（Claude Code / Codex など）向けの�
 
 ## プロジェクト概要
 
-- botamochi の個人サイト（ポートフォリオ + ブログ）。[AstroWind](https://github.com/arthelokyo/astrowind) テンプレートがベース
+- botamochi の個人サイト（ポートフォリオ + ブログ）。ゲーム会社の就職活動で使う。サイト全体が「ゲームのメニュー画面」になっている
+- [AstroWind](https://github.com/arthelokyo/astrowind) テンプレートから始めたが、画面の部品は自前の `src/components/game/` に置き換えた。ブログの仕組み（`src/utils/blog.ts`）と `vendor/integration/` は AstroWind のものを使っている
 - **Astro 7**（`output: 'static'`）+ **Tailwind CSS 4** + **MDX**、TypeScript
 - Tailwind の設定は `src/assets/styles/tailwind.css` の `@theme` などに書く（`tailwind.config.js` は無い）
 - Vercel に自動デプロイ（`main` へのマージで本番反映）
@@ -32,23 +33,24 @@ npm run fix          # eslint --fix + prettier -w
 
 ## ディレクトリ構成
 
-| パス                          | 内容                                                                   |
-| ----------------------------- | ---------------------------------------------------------------------- |
-| `src/pages/`                  | ルーティング（`index`, `about`, `portfolio`, `contact`, `[...blog]/`） |
-| `src/components/widgets/`     | ページを構成するセクション（Hero, Features, Footer など）              |
-| `src/components/ui/`          | 汎用UIパーツ                                                           |
-| `src/components/blog/`        | ブログ一覧・記事表示                                                   |
-| `src/components/common/`      | メタデータ、テーマ切替、解析などの共通処理                             |
-| `src/layouts/`                | ページレイアウト                                                       |
-| `src/data/post/YYYY/MM/DD.md` | ブログ記事（Markdown / MDX）                                           |
-| `src/content.config.ts`       | コンテンツコレクションのスキーマ（記事フロントマターの定義）           |
-| `src/config.yaml`             | サイト全体の設定（サイト名、SEO、ブログ設定など）                      |
-| `src/navigation.ts`           | ヘッダー・フッターのリンク定義                                         |
-| `src/utils/`                  | パーマリンク、画像最適化、ブログ取得などのユーティリティ               |
-| `vendor/integration/`         | `src/config.yaml` を読み込む AstroWind 独自の Astro インテグレーション |
-| `docs/`                       | 開発ルールのドキュメント                                               |
+| パス                           | 内容                                                                                 |
+| ------------------------------ | ------------------------------------------------------------------------------------ |
+| `src/pages/`                   | ルーティング（`index`(MENU), `works/`, `about`, `skills`, `contact`, `[...blog]/`）  |
+| `src/layouts/GameLayout.astro` | 全ページの骨組み（HUD・画面・操作の案内・背景のドット）                              |
+| `src/components/game/`         | メニュー画面の部品（`MenuList`, `PreviewPane`, `InfoTable` など）                    |
+| `src/scripts/game/`            | メニューの選択とキー・コントローラー操作、演出（ドットの波・切り替え・ゆがむ見出し） |
+| `src/data/works/*.md`          | 作品。`test: true` はテスト用のデータ                                                |
+| `src/data/profile.ts`          | プロフィール、技術、メニューの中身。`[ ]` で囲んだものは仮置き                       |
+| `src/components/common/`       | メタデータ、サイト確認、解析などの共通処理                                           |
+| `src/layouts/`                 | ページレイアウト                                                                     |
+| `src/data/post/YYYY/MM/DD.md`  | ブログ記事（Markdown / MDX）                                                         |
+| `src/content.config.ts`        | コンテンツコレクションのスキーマ（記事フロントマターの定義）                         |
+| `src/config.yaml`              | サイト全体の設定（サイト名、SEO、ブログ設定など）                                    |
+| `src/utils/`                   | パーマリンク、画像最適化、ブログ取得などのユーティリティ                             |
+| `vendor/integration/`          | `src/config.yaml` を読み込む AstroWind 独自の Astro インテグレーション               |
+| `docs/`                        | 開発ルールのドキュメント                                                             |
 
-- `src/` 配下は `~/` エイリアスで import する（例: `import Image from '~/components/common/Image.astro';`）
+- `src/` 配下は `~/` エイリアスで import する（例: `import MenuList from '~/components/game/MenuList.astro';`）
 - `dist/`, `.astro/`, `node_modules/` は生成物なので編集しない
 
 ## コーディング規約
@@ -63,7 +65,9 @@ npm run fix          # eslint --fix + prettier -w
 - ファイル名: コンポーネントは PascalCase（`BlogCard.astro`）、ユーティリティは camelCase
 - コメントは「何を」ではなく「なぜ」を書く
 - スタイルは Tailwind のユーティリティクラスを基本とし、既存コンポーネントの書き方に合わせる
-- 新しいコンポーネントを作る前に、`widgets/` や `ui/` に流用できるものがないか確認する
+- 新しいコンポーネントを作る前に、`components/game/` に流用できるものがないか確認する
+- メニューの項目は普通の `<a>` にする。選択・キー操作・演出は `scripts/game/` が後から足すので、JavaScript が無くても全ページをたどれる状態を保つ
+- 自動で動く演出を足すときは、`html.calm`（「動きを減らす」）で止まるようにする
 
 ## ブログ記事
 

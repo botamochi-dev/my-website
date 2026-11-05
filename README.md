@@ -2,7 +2,7 @@
 
 ## 🌟 概要
 
-[AstroWind](https://github.com/arthelokyo/astrowind) テンプレートをベースに作成したbotamochiのウェブサイト。
+botamochi のポートフォリオサイト。サイト全体がゲームのメニュー画面になっていて、キーボード・マウス・タッチ・コントローラーで操作できます。
 
 ## 📘 開発ドキュメント
 
@@ -25,7 +25,10 @@
 
 - ✅ **高速パフォーマンス** - Astroによる静的サイト生成
 - ✅ **レスポンシブデザイン** - モバイルファーストなUI
-- ✅ **ダークモード対応** - テーマ切り替え機能
+- ✅ **ゲームのメニュー画面** - 選んだ項目の文字がふくらむメニュー、背景のドットの波、画面の切り替えの演出
+- ✅ **いろいろな操作** - キーボード・マウス・タッチ・コントローラー（Gamepad API）
+- ✅ **夜の配色** - OS がダークモードのときは色を入れ替える
+- ✅ **動きを減らす** - OS の設定か画面のボタンで、自動で動く演出を止める
 - ✅ **SEO最適化** - メタタグ、OGP、サイトマップ自動生成
 - ✅ **ブログ機能** - カテゴリー・タグ対応
 - ✅ **シンプル運用** - Vercelによる自動デプロイ
@@ -41,20 +44,23 @@
 ├── public/              # 静的ファイル
 ├── src/
 │   ├── assets/         # 画像、スタイル
-│   ├── components/     # Astroコンポーネント
-│   │   ├── blog/      # ブログ関連
-│   │   ├── widgets/   # 再利用可能なウィジェット
-│   │   └── ui/        # UIコンポーネント
-│   ├── content/       # コンテンツコレクション設定
+│   ├── components/
+│   │   ├── common/    # メタデータ、解析などの共通処理
+│   │   └── game/      # メニュー画面の部品（HUD、メニュー、予告など）
+│   ├── content.config.ts  # コンテンツコレクションのスキーマ
 │   ├── data/
-│   │   └── post/      # ブログ記事（MDX）
+│   │   ├── post/      # ブログ記事（Markdown / MDX）
+│   │   ├── works/     # 作品（Markdown）
+│   │   └── profile.ts # プロフィールとメニューの中身
 │   ├── layouts/       # ページレイアウト
 │   ├── pages/         # ページファイル
-│   │   ├── index.astro      # ホーム
+│   │   ├── index.astro      # MENU
+│   │   ├── works/           # 作品の一覧と詳細
 │   │   ├── about.astro      # 自己紹介
-│   │   ├── portfolio.astro  # ポートフォリオ
-│   │   ├── contact.astro    # お問い合わせ
+│   │   ├── skills.astro     # できること
+│   │   ├── contact.astro    # 連絡先
 │   │   └── [...blog]/       # ブログページ
+│   ├── scripts/game/  # メニューの操作と演出（ドットの波、切り替え、ゆがむ見出し）
 │   └── utils/         # ユーティリティ関数
 ├── vendor/
 │   └── integration/   # カスタムAstro統合
@@ -148,4 +154,4 @@ draft: false # trueにすると下書き扱いとなり、ビルドに含まれ�
 
 ## 🙏 謝辞
 
-このサイトは [AstroWind](https://github.com/arthelokyo/astrowind) テンプレートをベースに作成されました。
+このサイトは [AstroWind](https://github.com/arthelokyo/astrowind) テンプレートから始めました。ブログの仕組みと `vendor/integration/`（`src/config.yaml` の読み込み）は、AstroWind のものを引き続き使っています。
